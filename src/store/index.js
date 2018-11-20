@@ -1,9 +1,10 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import homeReducer from './reducers/home'
 
-const reducer = (state = { name: 'kpl' }, action) => {
-  return state
-}
+const reducer = combineReducers({
+  home: homeReducer
+})
 
 const getStore = () => {
   return createStore(reducer, applyMiddleware(thunk))

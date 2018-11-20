@@ -3,8 +3,6 @@ const nodeExternals = require('webpack-node-externals')
 const merge = require('webpack-merge')
 const config = require('./webpack.base')
 
-console.log(__dirname)
-
 const serverConfig = {
   target: 'node',
   mode: 'development',

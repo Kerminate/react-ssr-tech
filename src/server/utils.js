@@ -1,15 +1,23 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom'
+import { StaticRouter, Route } from 'react-router-dom'
+import { matchRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
-import Routes from '../Routes'
+import routes from '../Routes'
 import getStore from '../store'
 
 export const render = (ctx) => {
+  const store = getStore()
+  const matchedRoutes = matchRoutes(routes, ctx.request.path)
+
   const content = renderToString(
-    <Provider store={getStore()}>
+    <Provider store={store}>
       <StaticRouter location={ctx.request.path} context={{}}>
-        {Routes}
+        <div>
+          {routes.map(route => (
+            <Route {...route} />
+          ))}
+        </div>
       </StaticRouter>
     </Provider>
   )
