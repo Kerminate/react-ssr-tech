@@ -6,7 +6,9 @@ import { getHomeList } from '../../store/actions/home'
 class Home extends Component {
 
   componentDidMount () {
-    this.props.getHomeList()
+    if (!this.props.list.length) {
+      this.props.getHomeList(false)
+    }
   }
 
   getList () {
@@ -27,7 +29,7 @@ class Home extends Component {
 
 Home.loadData = (store) => {
   // 服务端用来获取数据
-  store.dispatch(getHomeList())
+  return store.dispatch(getHomeList(true))
 }
 
 const mapStateToProps = (state) => ({
