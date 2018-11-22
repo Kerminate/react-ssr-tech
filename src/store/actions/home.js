@@ -1,4 +1,3 @@
-import axios from 'axios'
 import * as types from '../constants'
 
 const changeList = (list) => ({
@@ -6,15 +5,9 @@ const changeList = (list) => ({
   list
 })
 
-export const getHomeList = (server) => {
-  let url = ''
-  if (server) {
-    url = 'http://47.95.113.63/ssr/api/news.json?secret=abcd'
-  } else {
-    url = '/api/news.json?secret=abcd'
-  }
-  return (dispatch) => {
-    return axios.get(url)
+export const getHomeList = () => {
+  return (dispatch, getState, axiosInstance) => {
+    return axiosInstance.get('/api/news.json?secret=abcd')
       .then((res) => {
         const list = res.data.data
         dispatch(changeList(list))

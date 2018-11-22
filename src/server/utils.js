@@ -1,6 +1,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { StaticRouter, Route } from 'react-router-dom'
+import { StaticRouter } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
 
 export const render = (store, routes, ctx) => {
@@ -8,9 +9,8 @@ export const render = (store, routes, ctx) => {
     <Provider store={store}>
       <StaticRouter location={ctx.request.path} context={{}}>
         <div>
-          {routes.map(route => (
-            <Route {...route} />
-          ))}
+          {/* renderRoutes 用来渲染多级路由 */}
+          { renderRoutes(routes) }
         </div>
       </StaticRouter>
     </Provider>

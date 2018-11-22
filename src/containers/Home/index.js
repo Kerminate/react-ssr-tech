@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Header from '../../components/Header'
 import { getHomeList } from '../../store/actions/home'
 
 class Home extends Component {
 
   componentDidMount () {
     if (!this.props.list.length) {
-      this.props.getHomeList(false)
+      this.props.getHomeList()
     }
   }
 
@@ -19,7 +18,6 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <Header />
         {this.getList()}
         <button onClick={() => window.alert('click!')}>click</button>
       </div>
@@ -29,7 +27,7 @@ class Home extends Component {
 
 Home.loadData = (store) => {
   // 服务端用来获取数据
-  return store.dispatch(getHomeList(true))
+  return store.dispatch(getHomeList())
 }
 
 const mapStateToProps = (state) => ({
