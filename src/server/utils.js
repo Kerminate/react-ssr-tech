@@ -24,13 +24,13 @@ export const render = (store, routes, ctx) => {
     <title>react ssr</title>
     </head>
     <body>
-    <div id='root'>${content}</div>
-    <script>
-      window.context = {
-        state: ${JSON.stringify(store.getState())}
-      }
-    </script>
-    <script type="text/javascript" src="/index.js"></script>
+      <div id='root'>${content}</div>
+      <script>
+        window.context = {
+          state: ${JSON.stringify(store.getState())}
+        }
+      </script>
+      <script type="text/javascript" src="/index.js"></script>
     </body>
     </html>
   `

@@ -13,28 +13,15 @@ const app = new koa()
 const router = new Router()
 
 app.use(staticServe(path.join(__dirname, '../public')))
-
-// const proxyOption = {
-//   target: 'http://47.95.113.63',
-//   changeOrigin: true
-// }
-
-// const apiProxy = proxy(proxyOption)
-// app.use('/api', apiProxy)
-
-// app.use('/api', proxy('http://47.95.113.63', {
-//   proxyReqPathResolver: function(ctx) {
-//     return '/ssr/api' + ctx.url
-//   }
-// }))
+// app.use(staticServe(path.resolve(__dirname, 'public')))
 
 app.use(proxy({
-  host: 'http://47.95.113.63',
+  host: 'localhost:3001',
   match: /^\/api\//
 }))
 
 router.get('*', (ctx) => {
-  const store = getStore()
+  const store = getStore(ctx)
   const matchedRoutes = matchRoutes(routes, ctx.request.path)
   const promises = []
   matchedRoutes.forEach((item) => {

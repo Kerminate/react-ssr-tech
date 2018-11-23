@@ -1,12 +1,13 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Home from './containers/Home'
-import Login from './containers/Login'
+import Translation from './containers/Translation'
 import App from './app';
 
 export default [{
   path: '/',
   component: App,
+  loadData: () => App.loadData,
   routes: [
     {
       path: '/',
@@ -16,10 +17,11 @@ export default [{
       key: 'home'
     },
     {
-      path: '/login',
-      component: Login,
+      path: '/translation',
+      component: Translation,
       exact: true,
-      key: 'login'
+      loadData: () => Translation.loadData,
+      key: 'translation'
     }
   ]
 }]
