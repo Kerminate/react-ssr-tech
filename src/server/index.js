@@ -13,10 +13,9 @@ const app = new koa()
 const router = new Router()
 
 app.use(staticServe(path.join(__dirname, '../public')))
-// app.use(staticServe(path.resolve(__dirname, 'public')))
 
 app.use(proxy({
-  host: 'localhost:3001',
+  host: 'http://localhost:3001',
   match: /^\/api\//
 }))
 
@@ -37,5 +36,5 @@ router.get('*', (ctx) => {
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000, () => {
-  console.log('running!')
+  console.log('server is running at localhost:3000!')
 })

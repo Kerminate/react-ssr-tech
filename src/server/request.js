@@ -1,11 +1,12 @@
 import axios from 'axios'
 
-const createInstance = (ctx) => axios.create({
-  // baseURL: 'http://47.95.113.63/ssr'
-  baseURL: 'localhost:3001',
-  headers: {
-    cookie: ctx.cookies
-  }
-})
+const createInstance = (ctx) => {
+  return axios.create({
+    baseURL: 'http://localhost:3001',
+    headers: {
+      cookie: `uid=${ctx.cookies.get('uid')}`
+    }
+  })
+}
 
 export default createInstance

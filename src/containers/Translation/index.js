@@ -13,7 +13,7 @@ class Translation extends Component {
 
   getList () {
     const { list } = this.props
-    return list.map((item) => <div key={item.id}>{item.title}</div>)
+    return list.map((item) => <div key={item.id}>{item.name}</div>)
   }
 
   render () {
