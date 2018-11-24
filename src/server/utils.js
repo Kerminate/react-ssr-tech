@@ -1,17 +1,14 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
 
-export const render = (store, routes, ctx) => {
+export const render = (store, routes, ctx, context) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={ctx.request.path} context={{}}>
-        <div>
-          {/* renderRoutes 用来渲染多级路由 */}
-          { renderRoutes(routes) }
-        </div>
+      <StaticRouter location={ctx.request.path} context={context}>
+        <Fragment>{renderRoutes(routes)}</Fragment>
       </StaticRouter>
     </Provider>
   )
