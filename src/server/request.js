@@ -4,7 +4,7 @@ const createInstance = (ctx) => {
   return axios.create({
     baseURL: 'http://localhost:3001',
     headers: {
-      cookie: `uid=${ctx.cookies.get('uid')}`
+      cookie: `uid=${ctx.cookies.get('uid') || ''}`
     }
   })
 }
