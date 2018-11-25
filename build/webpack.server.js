@@ -16,7 +16,26 @@ const serverConfig = {
     filename: 'bundle.js',
     path: path.join(__dirname, '../dist')
   },
-  externals: [nodeExternals()]
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIndetName: '[name]_[local]_[hash:base64:5]'
+            }
+          },
+          'less-loader'
+        ]
+      }
+    ]
+  }
 }
 
 module.exports = merge(config, serverConfig)

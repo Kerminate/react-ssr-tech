@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getHomeList } from '../../store/actions/home'
+import './style.less'
 
 class Home extends Component {
 
