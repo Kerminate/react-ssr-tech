@@ -6,14 +6,12 @@ import App from './app'
 export default [{
   path: '/',
   component: App,
-  // loadData: () => App.loadData,
   loadData: App.loadData,
   routes: [
     {
       path: '/',
       component: Home,
       exact: true,
-      // loadData: () => Home.loadData,
       loadData: Home.loadData,
       key: 'home'
     },
@@ -21,7 +19,6 @@ export default [{
       path: '/translation',
       component: Translation,
       exact: true,
-      // loadData: () => Translation.loadData,
       loadData: Translation.loadData,
       key: 'translation'
     },

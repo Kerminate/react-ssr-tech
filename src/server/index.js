@@ -21,7 +21,7 @@ app.use(proxy({
 }))
 
 router.get('*', async (ctx) => {
-  const context = {}
+  const context = { css: [] }
   const store = getStore(ctx)
   const matchedRoutes = matchRoutes(routes, ctx.request.path)
   const promises = []
@@ -34,7 +34,7 @@ router.get('*', async (ctx) => {
       promises.push(promise)
     }
   })
-  
+
   await Promise.all(promises)
   const html = render(store, routes, ctx, context)
 
